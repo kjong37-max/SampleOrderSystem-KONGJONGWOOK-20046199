@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "../Model/OrderModel.h"
 #include "../Model/SampleModel.h"
 #include "../Model/ProductionLine.h"
@@ -15,7 +15,6 @@ public:
 
 private:
     void handleApproval(const Order& order);
-    int  calcEffectiveStock(const std::string& sampleId) const;
 
     OrderModel&     orderModel_;
     SampleModel&    sampleModel_;

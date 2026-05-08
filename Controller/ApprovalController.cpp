@@ -1,4 +1,4 @@
-﻿#include "ApprovalController.h"
+#include "ApprovalController.h"
 #include "../Model/Constants.h"
 #include <algorithm>
 #include <iostream>
@@ -58,7 +58,7 @@ void ApprovalController::handleApproval(const Order& order) {
         return;
     }
     Sample sample = *sampleOpt;
-    int effectiveStock = calcEffectiveStock(order.sampleId);
+    int effectiveStock = sampleModel_.effectiveStock(order.sampleId, orderModel_);
 
     // 재고 정보 표시
     std::cout << "------------------------------------------------------------\n";
@@ -100,16 +100,4 @@ void ApprovalController::handleApproval(const Order& order) {
             std::cout << "[거절 처리] RESERVED → REJECTED\n";
         }
     }
-}
-
-int ApprovalController::calcEffectiveStock(const std::string& sampleId) const {
-    int stock = 0;
-    if (auto s = sampleModel_.findById(sampleId))
-        stock = s->stock;
-
-    for (const auto& o : orderModel_.findByStatus(OrderStatus::CONFIRMED))
-        if (o.sampleId == sampleId)
-            stock -= o.quantity;
-
-    return stock;
 }

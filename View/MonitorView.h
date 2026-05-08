@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #define NOMINMAX
 #include <Windows.h>
 #include "../Model/Constants.h"
@@ -6,8 +6,6 @@
 #include "../Model/Order.h"
 #include <string>
 #include <vector>
-
-enum class StockStatus { SURPLUS, SHORT, DEPLETED };
 
 class MonitorView {
 public:
