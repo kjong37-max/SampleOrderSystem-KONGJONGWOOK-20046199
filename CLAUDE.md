@@ -50,6 +50,15 @@ Visual Studio에서는 `F5`(디버그 실행) 또는 `Ctrl+Shift+B`(빌드)를 �
 - **UI 계층**: 콘솔 메뉴 루프 — 도메인 로직과 분리 유지
 - **데이터 영속성**: 파일 I/O(CSV, 바이너리) 또는 SQLite 등 선택에 따라 별도 모듈로 격리
 
+## 개발 참고 저장소
+
+| 용도 | 저장소 |
+|------|--------|
+| MVC 스켈레톤 코드 | https://github.com/kjong37-max/ConsoleMVC-KONGJONGWOOK-20046199.git |
+| 데이터 영속성 처리 | https://github.com/kjong37-max/DataPersistence-KONGJONGWOOK-20046199.git |
+| 데이터 모니터링 Tool | https://github.com/kjong37-max/DataMonitor-KONGJONGWOOK-20046199.git |
+| Dummy 데이터 생성 Tool | https://github.com/kjong37-max/DummyDataGenerator-KONGJONGWOOK-20046199.git |
+
 ## 코딩 규칙
 
 - C++20 기능(`std::ranges`, `std::format`, structured bindings 등) 적극 활용
