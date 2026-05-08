@@ -147,6 +147,8 @@
     <ClCompile Include="View\ProductionView.cpp" />
     <ClCompile Include="Controller\ProductionController.cpp" />
     <ClCompile Include="Controller\ReleaseController.cpp" />
+    <ClCompile Include="View\MonitorView.cpp" />
+    <ClCompile Include="Controller\MonitorController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\Sample.h" />

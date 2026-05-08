@@ -57,6 +57,12 @@
     <ClCompile Include="Controller\ReleaseController.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="View\MonitorView.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\MonitorController.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\Sample.h">
