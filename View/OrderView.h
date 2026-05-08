@@ -7,11 +7,12 @@
 
 class OrderView {
 public:
-    Order promptOrderInput(std::span<const Sample> samples) const;
-    void showOrderResult(const Order& order) const;
-    void showReservedList(const std::vector<Order>& orders,
-                          std::span<const Sample>   samples) const;
-    void showMessage(const std::string& msg) const;
-    void showError(const std::string& msg)   const;
-    int  promptMenuChoice()                  const;
+    virtual ~OrderView() = default;
+    virtual Order promptOrderInput(std::span<const Sample> samples) const;
+    virtual void  showOrderResult(const Order& order) const;
+    virtual void  showReservedList(const std::vector<Order>& orders,
+                                   std::span<const Sample>   samples) const;
+    virtual void  showMessage(const std::string& msg) const;
+    virtual void  showError(const std::string& msg)   const;
+    virtual int   promptMenuChoice()                  const;
 };

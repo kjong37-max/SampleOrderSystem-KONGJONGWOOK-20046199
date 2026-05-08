@@ -14,7 +14,7 @@ Release/
 .vs/
 
 # 런타임 데이터 파일 (프로그램 실행 시 자동 생성)
-Data/samples.txt
+# samples.txt 는 초기 더미 데이터로 커밋 대상
 Data/orders.txt
 
 # 오브젝트·중간 파일
