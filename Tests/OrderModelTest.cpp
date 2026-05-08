@@ -13,7 +13,7 @@ TEST(OrderModelTest, Reserve_OrderIdFormat_IsCorrect) {
     OrderModel m;
     Order o = m.reserve("S-001", "고객A", 100);
     EXPECT_EQ(o.orderId.substr(0, 4), "ORD-");
-    EXPECT_EQ(o.orderId.size(), 18u);
+    EXPECT_EQ(o.orderId.size(), 17u);  // "ORD-YYYYMMDD-NNNN" = 4+8+1+4 = 17
 }
 
 TEST(OrderModelTest, Reserve_DailySeqIncrement) {
