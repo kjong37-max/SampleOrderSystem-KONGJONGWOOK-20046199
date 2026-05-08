@@ -72,10 +72,6 @@
     <ClCompile Include="Data\OrderStore.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Tests\SampleModelTest.cpp"><Filter>소스 파일</Filter></ClCompile>
-    <ClCompile Include="Tests\OrderModelTest.cpp"><Filter>소스 파일</Filter></ClCompile>
-    <ClCompile Include="Tests\ProductionLineTest.cpp"><Filter>소스 파일</Filter></ClCompile>
-    <ClCompile Include="Tests\ApprovalControllerTest.cpp"><Filter>소스 파일</Filter></ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\Sample.h">
