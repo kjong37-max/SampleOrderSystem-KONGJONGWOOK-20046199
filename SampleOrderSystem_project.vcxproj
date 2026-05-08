@@ -161,6 +161,8 @@
     <ClCompile Include="Tests\OrderStoreTest.cpp" />
     <ClCompile Include="Tests\ProductionControllerTest.cpp" />
     <ClCompile Include="Tests\ReleaseControllerTest.cpp" />
+    <ClCompile Include="Tests\TimeUtilsTest.cpp" />
+    <ClCompile Include="Tests\OrderStatusUtilsTest.cpp" />
     <ClCompile Include="Utils\TimeUtils.cpp" />
     <ClCompile Include="Utils\ConsoleUtils.cpp" />
   </ItemGroup>
