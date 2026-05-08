@@ -12,15 +12,15 @@ enum class StockStatus { SURPLUS, SHORT, DEPLETED };
 class MonitorView {
 public:
     MonitorView();
-    ~MonitorView();
+    virtual ~MonitorView();
 
-    void showMenu() const;
-    void showOrderStats(int reserved, int confirmed,
-                        int producing, int released) const;
-    void showStockStats(const std::vector<Sample>& samples,
-                        const std::vector<StockStatus>& statuses) const;
-    void showMessage(const std::string& msg) const;
-    int  promptMenuChoice() const;
+    virtual void showMenu() const;
+    virtual void showOrderStats(int reserved, int confirmed,
+                                int producing, int released) const;
+    virtual void showStockStats(const std::vector<Sample>& samples,
+                                const std::vector<StockStatus>& statuses) const;
+    virtual void showMessage(const std::string& msg) const;
+    virtual int  promptMenuChoice() const;
 
 private:
     HANDLE hOut_;

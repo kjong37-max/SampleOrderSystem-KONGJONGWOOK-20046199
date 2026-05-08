@@ -6,13 +6,14 @@
 
 class SampleView {
 public:
-    void showMenu() const;
-    Sample promptSampleInput() const;
-    void showSampleList(std::span<const Sample> samples) const;
-    void showSearchResult(const std::vector<Sample>& samples) const;
-    void showSampleDetail(const Sample& sample) const;
-    std::string promptSearchKeyword() const;
-    void showMessage(const std::string& msg) const;
-    void showError(const std::string& msg) const;
-    int promptMenuChoice() const;
+    virtual ~SampleView() = default;
+    virtual void showMenu() const;
+    virtual Sample promptSampleInput() const;
+    virtual void showSampleList(std::span<const Sample> samples) const;
+    virtual void showSearchResult(const std::vector<Sample>& samples) const;
+    virtual void showSampleDetail(const Sample& sample) const;
+    virtual std::string promptSearchKeyword() const;
+    virtual void showMessage(const std::string& msg) const;
+    virtual void showError(const std::string& msg) const;
+    virtual int  promptMenuChoice() const;
 };
