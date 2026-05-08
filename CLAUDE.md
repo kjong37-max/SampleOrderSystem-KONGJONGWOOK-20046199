@@ -6,7 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 반도체 시료 생산주문관리 시스템(SampleOrderSystem) - 반도체 공정에서 사용되는 시료의 생산 주문을 등록·추적·관리하는 Win32 콘솔 애플리케이션입니다.
 
-> 전체 기능 요구사항은 [`.claude/docs/PRD.md`](.claude/docs/PRD.md)를 참조하세요.
+> 전체 기능 요구사항은 [`.claude/docs/PRD.md`](.claude/docs/PRD.md)를 참조하세요.  
+> 구현 계획은 [`.claude/docs/PLAN.md`](.claude/docs/PLAN.md)를 참조하세요.
 
 ## 빌드 환경
 
