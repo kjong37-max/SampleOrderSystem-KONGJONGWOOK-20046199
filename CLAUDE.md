@@ -74,3 +74,13 @@ Visual Studio에서는 `F5`(디버그 실행) 또는 `Ctrl+Shift+B`(빌드)를 �
 - 문자열은 `std::wstring` 또는 `std::string` + UTF-8 정책을 프로젝트 전체에서 통일
 - 메모리 관리: raw pointer 대신 `std::unique_ptr` / `std::shared_ptr` 사용
 - 빌드 경고 레벨 Level3(`/W3`) — 경고를 오류처럼 취급하여 무시하지 않음
+
+## 테스트 규칙
+
+- 테스트 코드는 **gMock** (Google Mock)을 활용하여 작성한다.
+
+## 파일 인코딩 규칙
+
+- 모든 소스 파일은 **유니코드 (서명 있는 UTF-8) — 코드 페이지 65001** 로 저장한다.
+- Visual Studio 기준: 파일 저장 시 `파일 > 다른 이름으로 저장 > 저장` 옆 드롭다운 → `인코딩하여 저장` → `유니코드 (서명 있는 UTF-8) - 코드 페이지 65001` 선택.
+- BOM(Byte Order Mark)이 포함된 UTF-8(`UTF-8 with BOM`)이며, MSVC가 소스 파일을 UTF-8로 올바르게 인식하기 위해 필수다.
