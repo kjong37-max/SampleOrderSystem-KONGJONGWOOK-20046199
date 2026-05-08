@@ -1,6 +1,7 @@
 ﻿#pragma once
 #define NOMINMAX
 #include <Windows.h>
+#include "../Model/Constants.h"
 #include "../Model/Sample.h"
 #include "../Model/Order.h"
 #include <string>
@@ -36,5 +37,6 @@ private:
 
     void setColor(C c) const;
     void resetColor()  const;
-    void printBar(int stock, int maxStock, int width = 20) const;
+    void printBar(int stock, int maxStock,
+                  int width = SemiConst::BAR_WIDTH) const;
 };

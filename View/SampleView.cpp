@@ -1,4 +1,5 @@
 ﻿#include "SampleView.h"
+#include "../Model/Constants.h"
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -113,7 +114,7 @@ Sample SampleView::promptSampleInput() const
 namespace {
 void printSampleListPaged(const Sample* data, std::size_t size)
 {
-    constexpr int PAGE_SIZE = 5;
+    constexpr int PAGE_SIZE = SemiConst::PAGE_SIZE;
     int total = static_cast<int>(size);
     int page  = 0;
 

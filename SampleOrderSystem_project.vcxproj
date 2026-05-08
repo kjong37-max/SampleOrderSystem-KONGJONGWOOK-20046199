@@ -156,8 +156,14 @@
     <ClCompile Include="Tests\OrderModelTest.cpp" />
     <ClCompile Include="Tests\ProductionLineTest.cpp" />
     <ClCompile Include="Tests\ApprovalControllerTest.cpp" />
+    <ClCompile Include="Tests\DataStoreTest.cpp" />
+    <ClCompile Include="Tests\SampleStoreTest.cpp" />
+    <ClCompile Include="Tests\OrderStoreTest.cpp" />
+    <ClCompile Include="Tests\ProductionControllerTest.cpp" />
+    <ClCompile Include="Tests\ReleaseControllerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Model\Constants.h" />
     <ClInclude Include="Model\Sample.h" />
     <ClInclude Include="Model\Order.h" />
     <ClInclude Include="Model\ProductionJob.h" />
