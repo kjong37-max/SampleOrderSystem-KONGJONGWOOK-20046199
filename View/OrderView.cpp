@@ -4,6 +4,12 @@
 #include <iostream>
 #include <limits>
 
+void OrderView::showMenu() const {
+    std::cout << "============================================================\n";
+    std::cout << " [2] 시료 주문\n";
+    std::cout << "------------------------------------------------------------\n";
+}
+
 Order OrderView::promptOrderInput(std::span<const Sample> samples) const {
     while (true) {
         std::cout << "============================================================\n";
