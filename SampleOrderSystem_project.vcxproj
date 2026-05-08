@@ -139,6 +139,9 @@
     <ClCompile Include="Model\SampleModel.cpp" />
     <ClCompile Include="View\SampleView.cpp" />
     <ClCompile Include="Controller\SampleController.cpp" />
+    <ClCompile Include="Model\OrderModel.cpp" />
+    <ClCompile Include="View\OrderView.cpp" />
+    <ClCompile Include="Controller\OrderController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\Sample.h" />
