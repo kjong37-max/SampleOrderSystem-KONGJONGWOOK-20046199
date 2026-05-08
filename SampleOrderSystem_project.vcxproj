@@ -144,6 +144,8 @@
     <ClCompile Include="Controller\OrderController.cpp" />
     <ClCompile Include="Model\ProductionLine.cpp" />
     <ClCompile Include="Controller\ApprovalController.cpp" />
+    <ClCompile Include="View\ProductionView.cpp" />
+    <ClCompile Include="Controller\ProductionController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\Sample.h" />
@@ -157,6 +159,7 @@
     <ClInclude Include="Controller\SampleController.h" />
     <ClInclude Include="Controller\OrderController.h" />
     <ClInclude Include="Controller\ApprovalController.h" />
+    <ClInclude Include="Controller\ProductionController.h" />
     <ClInclude Include="Controller\ReleaseController.h" />
     <ClInclude Include="Controller\MonitorController.h" />
     <ClInclude Include="Data\DataStore.h" />
