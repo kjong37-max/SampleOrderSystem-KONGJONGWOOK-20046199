@@ -85,3 +85,5 @@ Visual Studio에서는 `F5`(디버그 실행) 또는 `Ctrl+Shift+B`(빌드)를 �
 - 모든 소스 파일은 **유니코드 (서명 있는 UTF-8) — 코드 페이지 65001** 로 저장한다.
 - Visual Studio 기준: 파일 저장 시 `파일 > 다른 이름으로 저장 > 저장` 옆 드롭다운 → `인코딩하여 저장` → `유니코드 (서명 있는 UTF-8) - 코드 페이지 65001` 선택.
 - BOM(Byte Order Mark)이 포함된 UTF-8(`UTF-8 with BOM`)이며, MSVC가 소스 파일을 UTF-8로 올바르게 인식하기 위해 필수다.
+- **BOM 없이 저장된 파일이 있을 경우**: MSVC가 시스템 코드페이지(CP949)로 파일을 읽어 한글 바이트 시퀀스를 오파싱한다. 이로 인해 `C1075`(브레이스 불일치), `C2001`(문자열 내 줄바꿈), `C2039`(멤버 인식 실패) 등 연쇄 오류가 발생한다.
+- 이를 방지하기 위해 `vcxproj`의 모든 빌드 구성 `<ClCompile>`에 `/utf-8` 플래그가 설정되어 있다(`<AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>`). BOM이 없는 파일도 MSVC가 UTF-8로 강제 인식한다.
