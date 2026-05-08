@@ -1,4 +1,4 @@
-#include "SampleController.h"
+﻿#include "SampleController.h"
 
 SampleController::SampleController(SampleModel& model, SampleView& view)
     : model_(model), view_(view)

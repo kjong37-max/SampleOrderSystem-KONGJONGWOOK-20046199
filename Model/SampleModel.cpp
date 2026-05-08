@@ -1,4 +1,4 @@
-#include "SampleModel.h"
+﻿#include "SampleModel.h"
 #include <algorithm>
 #include <cctype>
 #include <numeric>

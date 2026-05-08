@@ -1,4 +1,4 @@
-#include "MonitorView.h"
+﻿#include "MonitorView.h"
 #include <algorithm>
 #include <iomanip>
 #include <iostream>

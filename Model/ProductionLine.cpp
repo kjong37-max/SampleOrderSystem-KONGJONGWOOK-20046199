@@ -1,4 +1,4 @@
-#include "ProductionLine.h"
+﻿#include "ProductionLine.h"
 
 void ProductionLine::enqueue(const ProductionJob& job) {
     if (!current_) {

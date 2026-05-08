@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "../Model/Sample.h"
 #include <span>
 #include <string>

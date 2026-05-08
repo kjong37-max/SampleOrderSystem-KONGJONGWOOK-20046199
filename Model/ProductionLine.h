@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "ProductionJob.h"
 #include <optional>
 #include <queue>
