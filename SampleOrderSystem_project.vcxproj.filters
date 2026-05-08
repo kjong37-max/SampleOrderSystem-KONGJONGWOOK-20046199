@@ -42,6 +42,12 @@
     <ClCompile Include="Controller\OrderController.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Model\ProductionLine.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\ApprovalController.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\Sample.h">
