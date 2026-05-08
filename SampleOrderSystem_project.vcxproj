@@ -146,6 +146,7 @@
     <ClCompile Include="Controller\ApprovalController.cpp" />
     <ClCompile Include="View\ProductionView.cpp" />
     <ClCompile Include="Controller\ProductionController.cpp" />
+    <ClCompile Include="Controller\ReleaseController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\Sample.h" />
