@@ -1,6 +1,7 @@
 ﻿#define NOMINMAX
 #include <Windows.h>
 #include "ReleaseController.h"
+#include "../Utils/TimeUtils.h"
 #include <format>
 #include <iomanip>
 #include <iostream>
@@ -50,7 +51,7 @@ void ReleaseController::run() {
                   << " 고객명   : " << selected.customer  << "\n"
                   << " 시료 ID  : " << selected.sampleId  << "\n"
                   << " 출고 수량 : " << selected.quantity  << " ea\n"
-                  << " 처리 일시 : " << getCurrentDateTime() << "\n"
+                  << " 처리 일시 : " << TimeUtils::nowDateTime() << "\n"
                   << " 상태 변경 : CONFIRMED → RELEASED\n"
                   << "------------------------------------------------------------\n";
     }
@@ -81,10 +82,3 @@ void ReleaseController::showConfirmedList(const std::vector<Order>& orders) cons
     std::cout << "------------------------------------------------------------\n";
 }
 
-std::string ReleaseController::getCurrentDateTime() const {
-    SYSTEMTIME st{};
-    GetLocalTime(&st);
-    return std::format("{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}",
-        st.wYear, st.wMonth, st.wDay,
-        st.wHour, st.wMinute, st.wSecond);
-}
