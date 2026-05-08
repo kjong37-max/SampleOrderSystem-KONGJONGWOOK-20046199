@@ -161,6 +161,10 @@
     <ClCompile Include="Tests\OrderStoreTest.cpp" />
     <ClCompile Include="Tests\ProductionControllerTest.cpp" />
     <ClCompile Include="Tests\ReleaseControllerTest.cpp" />
+    <ClCompile Include="Tests\TimeUtilsTest.cpp" />
+    <ClCompile Include="Tests\OrderStatusUtilsTest.cpp" />
+    <ClCompile Include="Utils\TimeUtils.cpp" />
+    <ClCompile Include="Utils\ConsoleUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\Constants.h" />
@@ -182,6 +186,8 @@
     <ClInclude Include="Data\RecordStore.h" />
     <ClInclude Include="Data\SampleStore.h" />
     <ClInclude Include="Data\OrderStore.h" />
+    <ClInclude Include="Utils\TimeUtils.h" />
+    <ClInclude Include="Utils\ConsoleUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

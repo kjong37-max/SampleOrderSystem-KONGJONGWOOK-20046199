@@ -5,25 +5,6 @@ OrderStore::OrderStore(const std::string& filePath)
 {
 }
 
-std::string OrderStore::statusToStr(OrderStatus s) {
-    switch (s) {
-        case OrderStatus::RESERVED:  return "RESERVED";
-        case OrderStatus::REJECTED:  return "REJECTED";
-        case OrderStatus::PRODUCING: return "PRODUCING";
-        case OrderStatus::CONFIRMED: return "CONFIRMED";
-        case OrderStatus::RELEASED:  return "RELEASED";
-        default:                     return "RESERVED";
-    }
-}
-
-OrderStatus OrderStore::strToStatus(const std::string& s) {
-    if (s == "REJECTED")  return OrderStatus::REJECTED;
-    if (s == "PRODUCING") return OrderStatus::PRODUCING;
-    if (s == "CONFIRMED") return OrderStatus::CONFIRMED;
-    if (s == "RELEASED")  return OrderStatus::RELEASED;
-    return OrderStatus::RESERVED;
-}
-
 void OrderStore::load(OrderModel& model) {
     DataStore store(filePath_);
     store.load();
@@ -40,7 +21,7 @@ void OrderStore::load(OrderModel& model) {
         o.orderId   = store.get(prefix + ".orderId");
         o.sampleId  = store.get(prefix + ".sampleId");
         o.customer  = store.get(prefix + ".customer");
-        o.status    = strToStatus(store.get(prefix + ".status", "RESERVED"));
+        o.status    = strToOrderStatus(store.get(prefix + ".status", "RESERVED"));
         o.createdAt = store.get(prefix + ".createdAt");
         try { o.quantity = std::stoi(store.get(prefix + ".quantity", "0")); } catch (...) {}
         if (!o.orderId.empty()) model.addDirect(o);
@@ -60,7 +41,7 @@ void OrderStore::save(const OrderModel& model) const {
         store.set(prefix + ".sampleId",  orders[i].sampleId);
         store.set(prefix + ".customer",  orders[i].customer);
         store.set(prefix + ".quantity",  std::to_string(orders[i].quantity));
-        store.set(prefix + ".status",    statusToStr(orders[i].status));
+        store.set(prefix + ".status",    orderStatusToStr(orders[i].status));
         store.set(prefix + ".createdAt", orders[i].createdAt);
     }
     store.save();

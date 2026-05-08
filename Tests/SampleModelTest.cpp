@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "../Model/SampleModel.h"
+#include "../Model/OrderModel.h"  // effectiveStock/stockStatus 테스트용
 
 static Sample makeSample(const std::string& id, int stock = 100) {
     return Sample{ id, "테스트 시료", 0.5, 0.9, stock };
@@ -70,4 +71,59 @@ TEST(SampleModelTest, Count_ReturnsCorrectCount) {
     m.add(makeSample("S-001"));
     m.add(makeSample("S-002"));
     EXPECT_EQ(m.count(), 2);
+}
+
+// --- effectiveStock 테스트 ---
+
+TEST(SampleModelTest, EffectiveStock_NoConfirmed_EqualsStock) {
+    SampleModel sm;
+    OrderModel  om;
+    sm.add(makeSample("S-001", 100));
+    EXPECT_EQ(sm.effectiveStock("S-001", om), 100);
+}
+
+TEST(SampleModelTest, EffectiveStock_WithConfirmed_Deducts) {
+    SampleModel sm;
+    OrderModel  om;
+    sm.add(makeSample("S-001", 100));
+    Order o = om.reserve("S-001", "고객A", 30);
+    om.updateStatus(o.orderId, OrderStatus::CONFIRMED);
+    EXPECT_EQ(sm.effectiveStock("S-001", om), 70);
+}
+
+TEST(SampleModelTest, EffectiveStock_DifferentSample_NotAffected) {
+    SampleModel sm;
+    OrderModel  om;
+    sm.add(makeSample("S-001", 100));
+    sm.add(makeSample("S-002", 200));
+    Order o = om.reserve("S-002", "고객A", 50);
+    om.updateStatus(o.orderId, OrderStatus::CONFIRMED);
+    EXPECT_EQ(sm.effectiveStock("S-001", om), 100);
+}
+
+// --- stockStatus 테스트 ---
+
+TEST(SampleModelTest, StockStatus_ZeroStock_IsDepleted) {
+    SampleModel sm;
+    OrderModel  om;
+    sm.add(makeSample("S-001", 0));
+    EXPECT_EQ(sm.stockStatus("S-001", om), StockStatus::DEPLETED);
+}
+
+TEST(SampleModelTest, StockStatus_SufficientStock_IsSurplus) {
+    SampleModel sm;
+    OrderModel  om;
+    sm.add(makeSample("S-001", 100));
+    // 수요 없음 → SURPLUS
+    EXPECT_EQ(sm.stockStatus("S-001", om), StockStatus::SURPLUS);
+}
+
+TEST(SampleModelTest, StockStatus_ExcessDemand_IsShort) {
+    SampleModel sm;
+    OrderModel  om;
+    sm.add(makeSample("S-001", 100));
+    Order o = om.reserve("S-001", "고객A", 150);
+    om.updateStatus(o.orderId, OrderStatus::CONFIRMED);
+    // CONFIRMED 수요 150 > stock 100 → SHORT
+    EXPECT_EQ(sm.stockStatus("S-001", om), StockStatus::SHORT);
 }

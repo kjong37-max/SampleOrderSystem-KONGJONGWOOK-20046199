@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "../Model/OrderModel.h"
 #include "../Model/SampleModel.h"
 #include "../View/MonitorView.h"
@@ -13,7 +13,6 @@ public:
 private:
     void handleOrderStats();
     void handleStockStats();
-    StockStatus calcStockStatus(const Sample& sample) const;
 
     OrderModel&  orderModel_;
     SampleModel& sampleModel_;

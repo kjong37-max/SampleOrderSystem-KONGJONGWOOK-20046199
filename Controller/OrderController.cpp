@@ -10,6 +10,7 @@ OrderController::OrderController(OrderModel&  orderModel,
 }
 
 void OrderController::run() {
+    view_.showMenu();
     handleReserve();
 }
 

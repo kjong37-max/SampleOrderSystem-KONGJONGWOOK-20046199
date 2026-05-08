@@ -11,9 +11,6 @@ public:
     void run();
 
 private:
-    void showConfirmedList(const std::vector<Order>& orders) const;
-    std::string getCurrentDateTime() const;
-
     OrderModel&  orderModel_;
     SampleModel& sampleModel_;
     OrderView&   view_;

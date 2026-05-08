@@ -1,8 +1,8 @@
 ﻿#define NOMINMAX
 #include <Windows.h>
 #include "ReleaseController.h"
+#include "../Utils/TimeUtils.h"
 #include <format>
-#include <iomanip>
 #include <iostream>
 #include <string>
 
@@ -26,7 +26,7 @@ void ReleaseController::run() {
             return;
         }
 
-        showConfirmedList(confirmed);
+        view_.showConfirmedList(confirmed);
 
         std::cout << "출고할 번호 (0: 위로) > ";
         std::string line; std::getline(std::cin, line);
@@ -50,41 +50,9 @@ void ReleaseController::run() {
                   << " 고객명   : " << selected.customer  << "\n"
                   << " 시료 ID  : " << selected.sampleId  << "\n"
                   << " 출고 수량 : " << selected.quantity  << " ea\n"
-                  << " 처리 일시 : " << getCurrentDateTime() << "\n"
+                  << " 처리 일시 : " << TimeUtils::nowDateTime() << "\n"
                   << " 상태 변경 : CONFIRMED → RELEASED\n"
                   << "------------------------------------------------------------\n";
     }
 }
 
-void ReleaseController::showConfirmedList(const std::vector<Order>& orders) const {
-    std::cout << "============================================================\n"
-              << " [6] 출고 처리\n"
-              << "------------------------------------------------------------\n"
-              << " 출고 가능 주문  (CONFIRMED)\n"
-              << std::left
-              << std::setw(6)  << " 번호"
-              << std::setw(22) << "주문번호"
-              << std::setw(18) << "고객"
-              << std::setw(10) << "시료 ID"
-              << "수량\n"
-              << "------------------------------------------------------------\n";
-
-    for (int i = 0; i < static_cast<int>(orders.size()); ++i) {
-        const auto& o = orders[i];
-        std::cout << std::left
-                  << "  [" << std::setw(2) << (i + 1) << "] "
-                  << std::setw(22) << o.orderId
-                  << std::setw(18) << o.customer
-                  << std::setw(10) << o.sampleId
-                  << o.quantity << " ea\n";
-    }
-    std::cout << "------------------------------------------------------------\n";
-}
-
-std::string ReleaseController::getCurrentDateTime() const {
-    SYSTEMTIME st{};
-    GetLocalTime(&st);
-    return std::format("{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}",
-        st.wYear, st.wMonth, st.wDay,
-        st.wHour, st.wMinute, st.wSecond);
-}

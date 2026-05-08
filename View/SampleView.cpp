@@ -1,5 +1,6 @@
 ﻿#include "SampleView.h"
 #include "../Model/Constants.h"
+#include "../Utils/ConsoleUtils.h"
 #include <iomanip>
 #include <iostream>
 #include <limits>
@@ -224,11 +225,5 @@ void SampleView::showError(const std::string& msg) const
 // ============================================================
 int SampleView::promptMenuChoice() const
 {
-    std::string line;
-    std::getline(std::cin, line);
-    std::istringstream iss(line);
-    int choice{};
-    if (iss >> choice)
-        return choice;
-    return -1;
+    return ConsoleUtils::promptMenuChoice();
 }

@@ -1,4 +1,4 @@
-﻿#include "MonitorController.h"
+#include "MonitorController.h"
 #include <algorithm>
 #include <vector>
 
@@ -32,18 +32,6 @@ void MonitorController::handleStockStats() {
     std::vector<Sample> samples(allSamples.begin(), allSamples.end());
     std::vector<StockStatus> statuses;
     for (const auto& s : samples)
-        statuses.push_back(calcStockStatus(s));
+        statuses.push_back(sampleModel_.stockStatus(s.id, orderModel_));
     view_.showStockStats(samples, statuses);
-}
-
-StockStatus MonitorController::calcStockStatus(const Sample& s) const {
-    if (s.stock == 0) return StockStatus::DEPLETED;
-
-    int demand = 0;
-    for (const auto& o : orderModel_.findByStatus(OrderStatus::CONFIRMED))
-        if (o.sampleId == s.id) demand += o.quantity;
-    for (const auto& o : orderModel_.findByStatus(OrderStatus::RESERVED))
-        if (o.sampleId == s.id) demand += o.quantity;
-
-    return (demand > s.stock) ? StockStatus::SHORT : StockStatus::SURPLUS;
 }

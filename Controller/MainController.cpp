@@ -1,6 +1,5 @@
-﻿#define NOMINMAX
-#include <Windows.h>
-#include "MainController.h"
+﻿#include "MainController.h"
+#include "../Utils/TimeUtils.h"
 #include <format>
 #include <iomanip>
 #include <iostream>
@@ -56,9 +55,6 @@ void MainController::saveData() const {
 }
 
 void MainController::showMainMenu() const {
-    SYSTEMTIME st;
-    GetLocalTime(&st);
-
     int totalStock   = sampleModel_.totalStock();
     int sampleCount  = sampleModel_.count();
     int orderCount   = orderModel_.totalCount();
@@ -75,8 +71,7 @@ void MainController::showMainMenu() const {
         return s;
     };
 
-    std::string timeStr = std::format("{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}",
-        st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond);
+    std::string timeStr = TimeUtils::nowDateTime();
 
     std::cout << "\n============================================================\n";
     std::cout << "   반도체 시료 생산주문관리 시스템\n";

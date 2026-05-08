@@ -8,3 +8,5 @@ struct Sample {
     double      yield;        // 수율 (0.0 ~ 1.0)
     int         stock;        // 현재 재고 수량 (ea)
 };
+
+enum class StockStatus { SURPLUS, SHORT, DEPLETED };

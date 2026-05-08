@@ -11,7 +11,4 @@ public:
 
 private:
     std::string filePath_;
-
-    static std::string statusToStr(OrderStatus s);
-    static OrderStatus strToStatus(const std::string& s);
 };

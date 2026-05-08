@@ -1,15 +1,11 @@
-﻿#define NOMINMAX
-#include <Windows.h>
-#include "OrderModel.h"
+﻿#include "OrderModel.h"
+#include "../Utils/TimeUtils.h"
 #include <algorithm>
 #include <format>
 #include <ranges>
 
 std::string OrderModel::generateOrderId() {
-    SYSTEMTIME st;
-    GetLocalTime(&st);
-
-    std::string today = std::format("{:04d}{:02d}{:02d}", st.wYear, st.wMonth, st.wDay);
+    std::string today = TimeUtils::nowDate();
 
     if (today != lastDate_) {
         lastDate_  = today;
@@ -30,11 +26,7 @@ Order OrderModel::reserve(const std::string& sampleId,
     o.quantity  = quantity;
     o.status    = OrderStatus::RESERVED;
 
-    SYSTEMTIME st;
-    GetLocalTime(&st);
-    o.createdAt = std::format("{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}",
-                              st.wYear, st.wMonth, st.wDay,
-                              st.wHour, st.wMinute, st.wSecond);
+    o.createdAt = TimeUtils::nowDateTime();
 
     orders_.push_back(o);
     return o;

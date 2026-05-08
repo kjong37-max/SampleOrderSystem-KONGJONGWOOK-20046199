@@ -99,6 +99,18 @@
     <ClCompile Include="Tests\ReleaseControllerTest.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\TimeUtilsTest.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\OrderStatusUtilsTest.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\TimeUtils.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\ConsoleUtils.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\Constants.h">
@@ -156,6 +168,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Data\OrderStore.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\TimeUtils.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\ConsoleUtils.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

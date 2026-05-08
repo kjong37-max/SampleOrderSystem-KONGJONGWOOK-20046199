@@ -1,4 +1,5 @@
-﻿#include "SampleModel.h"
+#include "SampleModel.h"
+#include "../Model/OrderModel.h"
 #include <algorithm>
 #include <cctype>
 #include <numeric>
@@ -67,4 +68,27 @@ int SampleModel::totalStock() const
 int SampleModel::count() const
 {
     return static_cast<int>(samples_.size());
+}
+
+int SampleModel::effectiveStock(const std::string& sampleId,
+                                 const OrderModel&  orderModel) const {
+    auto s = findById(sampleId);
+    int stock = s ? s->stock : 0;
+    for (const auto& o : orderModel.findByStatus(OrderStatus::CONFIRMED))
+        if (o.sampleId == sampleId) stock -= o.quantity;
+    return stock;
+}
+
+StockStatus SampleModel::stockStatus(const std::string& sampleId,
+                                      const OrderModel&  orderModel) const {
+    auto s = findById(sampleId);
+    if (!s || s->stock == 0) return StockStatus::DEPLETED;
+
+    int demand = 0;
+    for (const auto& o : orderModel.findByStatus(OrderStatus::CONFIRMED))
+        if (o.sampleId == sampleId) demand += o.quantity;
+    for (const auto& o : orderModel.findByStatus(OrderStatus::RESERVED))
+        if (o.sampleId == sampleId) demand += o.quantity;
+
+    return (demand > s->stock) ? StockStatus::SHORT : StockStatus::SURPLUS;
 }

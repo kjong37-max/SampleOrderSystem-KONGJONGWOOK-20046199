@@ -1,8 +1,14 @@
 ﻿#include "OrderView.h"
+#include "../Utils/ConsoleUtils.h"
 #include <iomanip>
 #include <iostream>
 #include <limits>
-#include <sstream>
+
+void OrderView::showMenu() const {
+    std::cout << "============================================================\n";
+    std::cout << " [2] 시료 주문\n";
+    std::cout << "------------------------------------------------------------\n";
+}
 
 Order OrderView::promptOrderInput(std::span<const Sample> samples) const {
     while (true) {
@@ -94,15 +100,7 @@ void OrderView::showOrderResult(const Order& order) const {
     std::cout << " 고객명   : " << order.customer  << "\n";
     std::cout << " 수량     : " << order.quantity  << " ea\n";
 
-    std::string statusStr;
-    switch (order.status) {
-        case OrderStatus::RESERVED:  statusStr = "RESERVED";  break;
-        case OrderStatus::REJECTED:  statusStr = "REJECTED";  break;
-        case OrderStatus::PRODUCING: statusStr = "PRODUCING"; break;
-        case OrderStatus::CONFIRMED: statusStr = "CONFIRMED"; break;
-        case OrderStatus::RELEASED:  statusStr = "RELEASED";  break;
-    }
-    std::cout << " 현재 상태 : " << statusStr       << "\n";
+    std::cout << " 현재 상태 : " << orderStatusToStr(order.status) << "\n";
     std::cout << " 접수 일시 : " << order.createdAt << "\n";
     std::cout << "\n ※ 재고 확인 및 승인은 [3] 주문 승인/거절 메뉴에서 진행하세요.\n";
     std::cout << "------------------------------------------------------------\n";
@@ -132,22 +130,13 @@ void OrderView::showReservedList(const std::vector<Order>& orders,
             if (s.id == o.sampleId) { sampleName = s.name; break; }
         }
 
-        std::string statusStr;
-        switch (o.status) {
-            case OrderStatus::RESERVED:  statusStr = "RESERVED";  break;
-            case OrderStatus::REJECTED:  statusStr = "REJECTED";  break;
-            case OrderStatus::PRODUCING: statusStr = "PRODUCING"; break;
-            case OrderStatus::CONFIRMED: statusStr = "CONFIRMED"; break;
-            case OrderStatus::RELEASED:  statusStr = "RELEASED";  break;
-        }
-
         std::cout << " " << std::left
                   << std::setw(4)  << no++
                   << std::setw(20) << o.orderId
                   << std::setw(20) << o.customer
                   << std::setw(22) << sampleName
                   << std::setw(8)  << (std::to_string(o.quantity) + " ea")
-                  << statusStr << "\n";
+                  << orderStatusToStr(o.status) << "\n";
     }
     std::cout << "------------------------------------------------------------\n";
 }
@@ -161,11 +150,30 @@ void OrderView::showError(const std::string& msg) const {
 }
 
 int OrderView::promptMenuChoice() const {
-    std::string line;
-    std::getline(std::cin, line);
-    try {
-        return std::stoi(line);
-    } catch (...) {
-        return -1;
+    return ConsoleUtils::promptMenuChoice();
+}
+
+void OrderView::showConfirmedList(const std::vector<Order>& orders) const {
+    std::cout << "============================================================\n"
+              << " [6] 출고 처리\n"
+              << "------------------------------------------------------------\n"
+              << " 출고 가능 주문  (CONFIRMED)\n"
+              << std::left
+              << std::setw(6)  << " 번호"
+              << std::setw(22) << "주문번호"
+              << std::setw(18) << "고객"
+              << std::setw(10) << "시료 ID"
+              << "수량\n"
+              << "------------------------------------------------------------\n";
+
+    for (int i = 0; i < static_cast<int>(orders.size()); ++i) {
+        const auto& o = orders[i];
+        std::cout << std::left
+                  << "  [" << std::setw(2) << (i + 1) << "] "
+                  << std::setw(22) << o.orderId
+                  << std::setw(18) << o.customer
+                  << std::setw(10) << o.sampleId
+                  << o.quantity << " ea\n";
     }
+    std::cout << "------------------------------------------------------------\n";
 }
