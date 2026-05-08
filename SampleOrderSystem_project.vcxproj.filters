@@ -101,6 +101,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Model\Constants.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="Model\Sample.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>

@@ -163,6 +163,7 @@
     <ClCompile Include="Tests\ReleaseControllerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Model\Constants.h" />
     <ClInclude Include="Model\Sample.h" />
     <ClInclude Include="Model\Order.h" />
     <ClInclude Include="Model\ProductionJob.h" />

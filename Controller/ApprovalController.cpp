@@ -1,4 +1,5 @@
 ﻿#include "ApprovalController.h"
+#include "../Model/Constants.h"
 #include <algorithm>
 #include <iostream>
 #include <sstream>
@@ -76,7 +77,8 @@ void ApprovalController::handleApproval(const Order& order) {
         // 재고 부족
         int shortage  = order.quantity - std::max(effectiveStock, 0);
         int actualQty = static_cast<int>(std::ceil(
-                            static_cast<double>(shortage) / (sample.yield * 0.9)));
+                            static_cast<double>(shortage) /
+                            (sample.yield * SemiConst::PRODUCTION_CORRECTION)));
         double totalMin = sample.avgProdTime * actualQty;
 
         std::cout << "  재고 부족.  부족분: " << shortage << " ea\n";
