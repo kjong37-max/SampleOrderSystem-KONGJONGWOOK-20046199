@@ -15,4 +15,5 @@ public:
     virtual void  showMessage(const std::string& msg) const;
     virtual void  showError(const std::string& msg)   const;
     virtual int   promptMenuChoice()                  const;
+    virtual void  showConfirmedList(const std::vector<Order>& orders) const;
 };
