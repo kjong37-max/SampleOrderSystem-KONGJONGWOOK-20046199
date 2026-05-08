@@ -59,6 +59,14 @@ Visual Studio에서는 `F5`(디버그 실행) 또는 `Ctrl+Shift+B`(빌드)를 �
 | 데이터 모니터링 Tool | https://github.com/kjong37-max/DataMonitor-KONGJONGWOOK-20046199.git |
 | Dummy 데이터 생성 Tool | https://github.com/kjong37-max/DummyDataGenerator-KONGJONGWOOK-20046199.git |
 
+## 워크플로우 규칙
+
+> **IMPORTANT — phase 문서 기반 개발 시 commit 금지**
+>
+> phase 문서를 기반으로 코드를 개발한 후, **절대로 즉시 commit하지 말 것.**
+> 반드시 사용자의 검토(코드 확인 및 승인)가 완료된 이후에만 commit을 진행한다.
+> 검토 요청 없이 commit을 먼저 실행하는 것은 금지된 행동이다.
+
 ## 코딩 규칙
 
 - C++20 기능(`std::ranges`, `std::format`, structured bindings 등) 적극 활용
