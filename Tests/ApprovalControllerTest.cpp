@@ -91,3 +91,39 @@ TEST_F(ApprovalControllerTest, CalcEffectiveStock_WithConfirmed_DeductsAmount) {
         if (conf.sampleId == "S-001") effectiveStock -= conf.quantity;
     EXPECT_EQ(effectiveStock, 70);
 }
+
+TEST_F(ApprovalControllerTest,
+       CalcEffectiveStock_MultipleConfirmed_SumDeducted) {
+    Order o1 = orderModel_.reserve("S-001", "고객A", 30);
+    Order o2 = orderModel_.reserve("S-001", "고객B", 20);
+    orderModel_.updateStatus(o1.orderId, OrderStatus::CONFIRMED);
+    orderModel_.updateStatus(o2.orderId, OrderStatus::CONFIRMED);
+
+    int effectiveStock = sampleModel_.findById("S-001")->stock;
+    for (const auto& o : orderModel_.findByStatus(OrderStatus::CONFIRMED))
+        if (o.sampleId == "S-001") effectiveStock -= o.quantity;
+    EXPECT_EQ(effectiveStock, 50);  // 100 - 30 - 20
+}
+
+TEST_F(ApprovalControllerTest,
+       CalcEffectiveStock_DifferentSample_NotAffected) {
+    sampleModel_.add(Sample{ "S-002", "다른 시료", 0.3, 0.8, 200 });
+    Order o = orderModel_.reserve("S-002", "고객A", 50);
+    orderModel_.updateStatus(o.orderId, OrderStatus::CONFIRMED);
+
+    int effectiveStock = sampleModel_.findById("S-001")->stock;
+    for (const auto& conf : orderModel_.findByStatus(OrderStatus::CONFIRMED))
+        if (conf.sampleId == "S-001") effectiveStock -= conf.quantity;
+    EXPECT_EQ(effectiveStock, 100);
+}
+
+TEST_F(ApprovalControllerTest,
+       CalcEffectiveStock_OverCommitted_ReturnsNegative) {
+    Order o = orderModel_.reserve("S-001", "고객A", 120);
+    orderModel_.updateStatus(o.orderId, OrderStatus::CONFIRMED);
+
+    int effectiveStock = sampleModel_.findById("S-001")->stock;
+    for (const auto& conf : orderModel_.findByStatus(OrderStatus::CONFIRMED))
+        if (conf.sampleId == "S-001") effectiveStock -= conf.quantity;
+    EXPECT_LT(effectiveStock, 0);
+}
