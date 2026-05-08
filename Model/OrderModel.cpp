@@ -1,4 +1,4 @@
-#define NOMINMAX
+﻿#define NOMINMAX
 #include <Windows.h>
 #include "OrderModel.h"
 #include <algorithm>
@@ -68,4 +68,8 @@ std::span<const Order> OrderModel::all() const {
 
 int OrderModel::totalCount() const {
     return static_cast<int>(orders_.size());
+}
+
+void OrderModel::addDirect(const Order& order) {
+    orders_.push_back(order);
 }

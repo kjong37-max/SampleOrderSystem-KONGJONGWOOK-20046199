@@ -149,6 +149,9 @@
     <ClCompile Include="Controller\ReleaseController.cpp" />
     <ClCompile Include="View\MonitorView.cpp" />
     <ClCompile Include="Controller\MonitorController.cpp" />
+    <ClCompile Include="Data\DataStore.cpp" />
+    <ClCompile Include="Data\SampleStore.cpp" />
+    <ClCompile Include="Data\OrderStore.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\Sample.h" />
@@ -167,6 +170,8 @@
     <ClInclude Include="Controller\MonitorController.h" />
     <ClInclude Include="Data\DataStore.h" />
     <ClInclude Include="Data\RecordStore.h" />
+    <ClInclude Include="Data\SampleStore.h" />
+    <ClInclude Include="Data\OrderStore.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

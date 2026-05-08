@@ -63,6 +63,15 @@
     <ClCompile Include="Controller\MonitorController.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Data\DataStore.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\SampleStore.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\OrderStore.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Model\Sample.h">
@@ -111,6 +120,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Data\RecordStore.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SampleStore.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\OrderStore.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
