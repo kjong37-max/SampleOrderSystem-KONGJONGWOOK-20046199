@@ -1,0 +1,24 @@
+# PDF 원본 및 변환 이미지
+*.pdf
+.claude/pdf_pages/
+
+# Visual Studio 빌드 산출물
+x64/
+x86/
+Debug/
+Release/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+.vs/
+
+# 오브젝트·중간 파일
+*.obj
+*.pch
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.dll
+*.exe
