@@ -1,8 +1,8 @@
 ﻿#include "MonitorView.h"
+#include "../Utils/ConsoleUtils.h"
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
-#include <sstream>
 
 MonitorView::MonitorView() : hOut_(GetStdHandle(STD_OUTPUT_HANDLE)) {
     CONSOLE_SCREEN_BUFFER_INFO info{};
@@ -113,11 +113,5 @@ void MonitorView::showMessage(const std::string& msg) const {
 }
 
 int MonitorView::promptMenuChoice() const {
-    std::string line;
-    std::getline(std::cin, line);
-    try {
-        return std::stoi(line);
-    } catch (...) {
-        return -1;
-    }
+    return ConsoleUtils::promptMenuChoice();
 }

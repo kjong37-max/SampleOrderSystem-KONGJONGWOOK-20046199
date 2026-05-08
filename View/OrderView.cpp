@@ -1,8 +1,8 @@
 ﻿#include "OrderView.h"
+#include "../Utils/ConsoleUtils.h"
 #include <iomanip>
 #include <iostream>
 #include <limits>
-#include <sstream>
 
 Order OrderView::promptOrderInput(std::span<const Sample> samples) const {
     while (true) {
@@ -144,11 +144,5 @@ void OrderView::showError(const std::string& msg) const {
 }
 
 int OrderView::promptMenuChoice() const {
-    std::string line;
-    std::getline(std::cin, line);
-    try {
-        return std::stoi(line);
-    } catch (...) {
-        return -1;
-    }
+    return ConsoleUtils::promptMenuChoice();
 }

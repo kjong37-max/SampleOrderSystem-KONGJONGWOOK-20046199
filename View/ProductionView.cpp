@@ -1,7 +1,7 @@
 ﻿#include "ProductionView.h"
+#include "../Utils/ConsoleUtils.h"
 #include <iomanip>
 #include <iostream>
-#include <sstream>
 
 void ProductionView::showMenu() const {
     std::cout << "============================================================\n"
@@ -78,11 +78,5 @@ void ProductionView::showError(const std::string& msg) const {
 }
 
 int ProductionView::promptMenuChoice() const {
-    std::string line;
-    std::getline(std::cin, line);
-    try {
-        return std::stoi(line);
-    } catch (...) {
-        return -1;
-    }
+    return ConsoleUtils::promptMenuChoice();
 }
